@@ -35,7 +35,6 @@ public class ServletAdd extends HttpServlet {
         }
 
         JsonObject jsonObject = gson.fromJson(String.valueOf(jsonBuffer), JsonObject.class);
-
         request.setCharacterEncoding("UTF-8");
 
         String name = jsonObject.get("name").getAsString();
