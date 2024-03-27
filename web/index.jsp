@@ -16,6 +16,7 @@
     Model model = Model.getInstance();
     out.print(model.getFromList().size());
 %>
+<br/>
 <form method="get" action="get">
     <label>ID:
         <input type="text" name="id"><br/>
@@ -23,12 +24,14 @@
     <br/>
     <button type="submit">Поиск</button>
 </form>
-    <br/>
-    <br/>
-    <a href="addUser.html">Создать нового пользователя</a>
-    <br/>
-    <br/>
-    <a href="deleteUser.html">Удалить пользователя по ID</a>
+<br/>
+<a href="addUser.html">Создать нового пользователя</a>
+<br/>
+<br/>
+<a href="putUser.html">Изменить данные отдельного пользователя</a>
+<br/>
+<br/>
+<a href="deleteUser.html">Удалить пользователя по ID</a>
 </body>
 <head>
     <title>Title</title>
