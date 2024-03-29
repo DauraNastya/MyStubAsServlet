@@ -3,7 +3,7 @@ package ru.appline;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import ru.appline.logic.Calculation;
+import ru.appline.logic.Calculator;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +13,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "/multiply")
-public class ServletMultiply extends HttpServlet {
+@WebServlet(urlPatterns = "/calculate")
+public class ServletCalculate extends HttpServlet {
 
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -42,12 +42,35 @@ public class ServletMultiply extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter printWriter = response.getWriter();
 
-        if (math.equals("*")) {
-            Calculation calculation = new Calculation(a, b, math);
-            calculation.multiply();
-            printWriter.print(gson.toJson(calculation.getResult()));
-        } else {
-            printWriter.print(gson.toJson("math должен быть только '*'!"));
+        Calculator calculator;
+        switch (math) {
+            case "+":
+                calculator = new Calculator(a, b, math);
+                calculator.add();
+                printWriter.print(gson.toJson(calculator.getResult()));
+                break;
+            case "-":
+                calculator = new Calculator(a, b, math);
+                calculator.subtrack();
+                printWriter.print(gson.toJson(calculator.getResult()));
+                break;
+            case "*":
+                calculator = new Calculator(a, b, math);
+                calculator.multiply();
+                printWriter.print(gson.toJson(calculator.getResult()));
+                break;
+            case "/":
+                if (b == 0) {
+                    printWriter.print(gson.toJson("Делить на нуль нельзя!"));
+                    break;
+                }
+                calculator = new Calculator(a, b, math);
+                calculator.divide();
+                printWriter.print(gson.toJson(calculator.getResult()));
+                break;
+            default:
+                printWriter.print(gson.toJson("Вы выбрали неизвестное действие! Возможны: + - * /"));
+                break;
         }
     }
 }

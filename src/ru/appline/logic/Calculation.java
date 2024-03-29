@@ -1,24 +1,39 @@
 package ru.appline.logic;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Calculation implements Serializable {
-
-    Map<String, Double> result;
-    Multiplication multiplication;
+    private double a;
+    private double b;
+    private String math;
 
     public Calculation(double a, double b, String math) {
-        multiplication = new Multiplication(a, b, math);
-        result = new HashMap<>();
+        this.a = a;
+        this.b = b;
+        this.math = math;
     }
 
-    public void multiply() {
-        result.put("result", multiplication.getA() * multiplication.getB());
+    public double getA() {
+        return a;
     }
 
-    public Map<String, Double> getResult() {
-        return result;
+    public void setA(double a) {
+        this.a = a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public void setB(double b) {
+        this.b = b;
+    }
+
+    public String getMath() {
+        return math;
+    }
+
+    public void setMath(String math) {
+        this.math = math;
     }
 }

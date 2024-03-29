@@ -29,7 +29,7 @@
 <a href="putUser.html">Изменить данные отдельного пользователя</a><br/><br/>
 <a href="deleteUser.html">Удалить пользователя по ID</a><br/><br/>
 <h3>Немного математики:</h3>
-<a href="multiplication.html">Умножение двух чисел</a><br/><br/>
+<a href="calculation.html">Умножение двух чисел</a><br/><br/>
 </body>
 <head>
     <title>Title</title>
