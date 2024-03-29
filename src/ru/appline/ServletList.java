@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import ru.appline.logic.Model;
-import ru.appline.logic.User;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 
 @WebServlet(urlPatterns = "/get")
 public class ServletList extends HttpServlet {
@@ -43,11 +41,10 @@ public class ServletList extends HttpServlet {
         if (id == 0) {
             printWriter.print(gson.toJson(model.getFromList()));
         } else if (id > 0) {
-            if (id > model.getFromList().size()) {
-
-                printWriter.print(gson.toJson("Такого пользователя нет :("));
-            } else {
+            if (model.getFromList().containsKey(id)) {
                 printWriter.print(gson.toJson(model.getFromList().get(id)));
+            } else {
+                printWriter.print(gson.toJson("Такого пользователя нет :("));
             }
         } else {
             printWriter.print(gson.toJson("ID должен быть больше нуля!"));
